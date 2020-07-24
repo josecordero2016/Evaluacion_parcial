@@ -16,24 +16,28 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.evaluacion_parcial.Detalles;
 import com.example.evaluacion_parcial.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    public static TextView lblPais_frag;
+    public static View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        root = inflater.inflate(R.layout.fragment_home, container, false);
         return root;
     }
-    public void HomeFragment()
+    public static void asignacion(String valor)
     {
-        lblPais_frag = (TextView) getView().findViewById(R.id.lblPais_frag);
-
-
+        TextView lblPais_frag =(TextView)root.findViewById(R.id.lblPais_frag);
+        lblPais_frag.setText(valor);
     }
+
+
 }

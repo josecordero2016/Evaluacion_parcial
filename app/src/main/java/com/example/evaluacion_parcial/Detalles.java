@@ -54,25 +54,25 @@ public class Detalles extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
         lblPais_frag = (TextView)findViewById(R.id.lblPais_frag);
         lblCapital = (TextView)findViewById(R.id.lblCapital);
         lblNacionalidad = (TextView)findViewById(R.id.lblNacionalidad);
         lblRegion = (TextView)findViewById(R.id.lblRegion);
 
         try{
-        //Obteniendo los datos
-        Bundle b = this.getIntent().getExtras();
-        ArrayList<String> valores =b.getStringArrayList("valores");
-        //View view = inflater.inflate(R.layout.fragment_main, container, false);
+            //Obteniendo los datos
+            Bundle b = this.getIntent().getExtras();
+            ArrayList<String> valores =b.getStringArrayList("valores");
 
-        HomeFragment.lblPais_frag.setText(valores.get(0));
 
+            //Asignando los valores
+            HomeFragment.asignacion(valores.get(0).toString());
         }
         catch (Exception e){
             Toast.makeText(getApplicationContext(), e.toString(),Toast.LENGTH_LONG).show();
 
         }
+
     }
 
     @Override
@@ -85,7 +85,11 @@ public class Detalles extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }
