@@ -10,8 +10,6 @@ import android.widget.Toast;
 import com.example.evaluacion_parcial.Adaptadores.adt_paises;
 import com.example.evaluacion_parcial.Interfaces.itf_paises;
 import com.example.evaluacion_parcial.Modelos.Pais;
-import com.mindorks.placeholderview.InfinitePlaceHolderView;
-import com.mindorks.placeholderview.PlaceHolderView;
 
 import java.util.List;
 
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Pais>> call, Response<List<Pais>> response)
             {
+                try{
                 //Codigo de respuesta a la petición realizada
                 String cod_respuesta = "Código " + response.code();
                 //Definiendo donde se guardaran los valores obtenidos
@@ -53,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
                 linear.setOrientation(LinearLayoutManager.VERTICAL);
                 rclListado.setLayoutManager(linear);
                 adt_paises adaptador = new adt_paises(paises_arr);
-                rclListado.setAdapter(adaptador);
+                rclListado.setAdapter(adaptador);}
+                catch (Exception e)
+                {
+                    Toast.makeText(getApplicationContext(),e.toString(), Toast.LENGTH_LONG);
+                }
             }
 
             @Override

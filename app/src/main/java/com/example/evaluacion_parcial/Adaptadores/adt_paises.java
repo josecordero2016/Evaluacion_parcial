@@ -1,15 +1,12 @@
 package com.example.evaluacion_parcial.Adaptadores;
 
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.evaluacion_parcial.Modelos.Pais;
 import com.example.evaluacion_parcial.R;
@@ -26,7 +23,7 @@ public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
     public adt_paises.ViewHolder_dts onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = null;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lyt_items, null, false);
-        return null;
+        return new ViewHolder_dts(view);
     }
 
     @Override
