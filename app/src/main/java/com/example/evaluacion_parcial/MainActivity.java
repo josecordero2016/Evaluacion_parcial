@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -19,10 +20,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements adt_paises.OnNoteListener {
 
     RecyclerView rclListado;
-
+    List<Pais> paises_arr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 //Definiendo donde se guardaran los valores obtenidos
                 String valores = "";
                 //Creando array con datos de cada país
-                List<Pais> paises_arr = response.body();
+                paises_arr = response.body();
                 //Configuración del recyclerview
                 LinearLayoutManager linear = new LinearLayoutManager(getApplicationContext());
                 linear.setOrientation(LinearLayoutManager.VERTICAL);
@@ -64,5 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Error, ",Toast.LENGTH_LONG).show();;
             }
         });
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        paises_arr.get(position);
+        Toast.makeText(getApplicationContext(), paises_arr.get(position).getName(),Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this,Detalles.class);
+        startActivity(intent);
     }
 }

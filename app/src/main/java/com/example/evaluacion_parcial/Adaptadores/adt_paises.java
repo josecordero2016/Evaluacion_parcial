@@ -36,17 +36,21 @@ public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
         return dts.size();
     }
 
-    public class ViewHolder_dts extends RecyclerView.ViewHolder {
+
+
+
+    public class ViewHolder_dts extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView lblPais;
         ImageView imgFoto;
+        OnNoteListener onNoteListener;
 
-
-        public ViewHolder_dts(@NonNull View itemView)
+        public ViewHolder_dts(@NonNull View itemView, OnNoteListener onNoteListener)
         {
             super(itemView);
             lblPais = (TextView) itemView.findViewById(R.id.lblPais);
             imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
+            this.onNoteListener=onNoteListener;
         }
 
         public void asignando(Pais p)
@@ -56,7 +60,18 @@ public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
             Glide.with(itemView).load(url)
                     .centerCrop()
                     .into(imgFoto);
+            //Para poder seleccionar cada item
+            itemView.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View view) {
+                onNoteListener.onNoteClick(getAdapterPosition());
         }
     }
+
+    public interface OnNoteListener{
+        void onNoteClick(int position);
+    }
+
 }
