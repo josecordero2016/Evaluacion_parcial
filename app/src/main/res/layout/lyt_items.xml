@@ -22,7 +22,7 @@
             android:background="#3E73B3">
 
             <TextView
-                android:id="@+id/lblPais"
+                android:id="@+id/lblPais_frag"
                 android:layout_width="346dp"
                 android:layout_height="25dp"
                 android:text="TextView"
@@ -40,7 +40,7 @@
                 android:layout_marginTop="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/lblPais"
+                app:layout_constraintTop_toTopOf="@+id/lblPais_frag"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

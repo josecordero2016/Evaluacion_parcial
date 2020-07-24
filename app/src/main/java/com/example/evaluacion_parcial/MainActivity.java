@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.Toast;
 
 import com.example.evaluacion_parcial.Adaptadores.adt_paises;
 import com.example.evaluacion_parcial.Interfaces.itf_paises;
 import com.example.evaluacion_parcial.Modelos.Pais;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -71,9 +73,15 @@ public class MainActivity extends AppCompatActivity implements adt_paises.OnNote
 
     @Override
     public void onNoteClick(int position) {
-        paises_arr.get(position);
-        Toast.makeText(getApplicationContext(), paises_arr.get(position).getName(),Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(this,Detalles.class);
-        //startActivity(intent);
+
+        //Toast.makeText(getApplicationContext(), paises_arr.get(position).getName(),Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this,Detalles.class);
+
+        //Bundle para enviar los datos
+        Bundle b = new Bundle();
+        b.putParcelable("valores", (Parcelable) paises_arr.get(position));
+        //Asignando el bundle en el intent
+        intent.putExtras(b);
+        startActivity(intent);
     }
 }

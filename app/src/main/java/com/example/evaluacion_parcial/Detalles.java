@@ -3,7 +3,10 @@ package com.example.evaluacion_parcial;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.example.evaluacion_parcial.Modelos.Pais;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -19,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 public class Detalles extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    TextView lblPais_frag, lblNacionalidad, lblCapital, lblRegion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,13 @@ public class Detalles extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+        Bundle b = this.getIntent().getExtras();
+        Pais pais =b.getParcelable("Valores");
+        //Obteniendo los datos
+        lblPais_frag = (TextView)findViewById(R.id.lblPais_frag);
+        lblCapital = (TextView)findViewById(R.id.lblCapital);
+        lblNacionalidad = (TextView)findViewById(R.id.lblNacionalidad);
+        lblRegion = (TextView)findViewById(R.id.lblRegion);
     }
 
     @Override

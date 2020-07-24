@@ -13,8 +13,6 @@ import com.example.evaluacion_parcial.R;
 
 import java.util.List;
 
-import retrofit2.Callback;
-
 public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
 {
     private  List<Pais> dts;
@@ -56,7 +54,7 @@ public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
         public ViewHolder_dts(@NonNull View itemView, OnNoteListener onNoteListener)
         {
             super(itemView);
-            lblPais = (TextView) itemView.findViewById(R.id.lblPais);
+            lblPais = (TextView) itemView.findViewById(R.id.lblPais_frag);
             imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
             this.onNoteListener=onNoteListener;
         }
