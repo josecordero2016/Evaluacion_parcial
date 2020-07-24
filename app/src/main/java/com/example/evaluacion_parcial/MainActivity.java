@@ -1,12 +1,16 @@
 package com.example.evaluacion_parcial;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.evaluacion_parcial.Interfaces.itf_paises;
 import com.example.evaluacion_parcial.Modelos.Pais;
+import com.mindorks.placeholderview.InfinitePlaceHolderView;
+import com.mindorks.placeholderview.PlaceHolderView;
 
 import java.util.List;
 
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        final InfinitePlaceHolderView infinitePlaceHolderView = findViewById(R.id.infinitePlaceHolder);
         // Implementación de retrofit para obtener los datos de los países
         Retrofit rf = new Retrofit.Builder()
                 .baseUrl("https://restcountries.eu/")
@@ -35,14 +39,18 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Pais>> call, Response<List<Pais>> response)
             {
                 //Codigo de respuesta a la petición realizada
-                String cod_respuesta = "Código "+response.code();
+                String cod_respuesta = "Código " + response.code();
                 //Definiendo donde se guardaran los valores obtenidos
-                String valores ="";
-                List<Pais> lista_paises = response.body();
-                //Almacenando en la lista de tipo Bancos cada uno alojado en el JSON
-                for(Pais pais: lista_paises){
-                    valores+=pais.getName()+"\n";
-                }
+                String valores = "";
+                //Creando array con datos de cada país
+                Restaurante[] restaurant_arr = restaurantes.getRestaurantes();
+                //Creación y configuración del recyclerview
+                rclVista = (RecyclerView) findViewById(R.id.rclVista);
+                LinearLayoutManager linear = new LinearLayoutManager(getApplicationContext());
+                linear.setOrientation(LinearLayoutManager.VERTICAL);
+                rclVista.setLayoutManager(linear);
+                adt_datos adaptador = new adt_datos(restaurant_arr);
+                rclVista.setAdapter(adaptador);
             }
 
             @Override
