@@ -13,17 +13,25 @@ import com.example.evaluacion_parcial.R;
 
 import java.util.List;
 
+import retrofit2.Callback;
+
 public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
 {
     private  List<Pais> dts;
-    public  adt_paises(List<Pais> dts){this.dts = dts;}
+    private OnNoteListener onNoteListenera;
+
+    public  adt_paises(List<Pais> dts, OnNoteListener onNoteListener)
+    {
+        this.dts = dts;
+        this.onNoteListenera=onNoteListener;
+    }
 
     @NonNull
     @Override
     public adt_paises.ViewHolder_dts onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = null;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lyt_items, null, false);
-        return new ViewHolder_dts(view);
+        return new ViewHolder_dts(view,onNoteListenera);
     }
 
     @Override

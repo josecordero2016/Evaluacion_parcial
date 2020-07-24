@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements adt_paises.OnNote
 
     RecyclerView rclListado;
     List<Pais> paises_arr;
+    MainActivity mainActivity=this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements adt_paises.OnNote
                 LinearLayoutManager linear = new LinearLayoutManager(getApplicationContext());
                 linear.setOrientation(LinearLayoutManager.VERTICAL);
                 rclListado.setLayoutManager(linear);
-                adt_paises adaptador = new adt_paises(paises_arr);
+                adt_paises adaptador = new adt_paises(paises_arr, mainActivity);
                 rclListado.setAdapter(adaptador);}
                 catch (Exception e)
                 {
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements adt_paises.OnNote
     public void onNoteClick(int position) {
         paises_arr.get(position);
         Toast.makeText(getApplicationContext(), paises_arr.get(position).getName(),Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this,Detalles.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this,Detalles.class);
+        //startActivity(intent);
     }
 }
