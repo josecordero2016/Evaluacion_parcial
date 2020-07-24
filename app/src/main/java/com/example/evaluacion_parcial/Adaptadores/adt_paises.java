@@ -14,10 +14,12 @@ import com.bumptech.glide.Glide;
 import com.example.evaluacion_parcial.Modelos.Pais;
 import com.example.evaluacion_parcial.R;
 
+import java.util.List;
+
 public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
 {
-    private  Pais[] dts;
-    public  adt_paises(Pais[] dts){this.dts = dts;}
+    private  List<Pais> dts;
+    public  adt_paises(List<Pais> dts){this.dts = dts;}
 
     @NonNull
     @Override
@@ -29,12 +31,12 @@ public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
 
     @Override
     public void onBindViewHolder(@NonNull adt_paises.ViewHolder_dts holder, int position) {
-        try{holder.asignando(dts[position]);}catch (Exception e){}
+        try{holder.asignando(dts.get(position));}catch (Exception e){}
     }
 
     @Override
     public int getItemCount() {
-        return dts.length;
+        return dts.size();
     }
 
     public class ViewHolder_dts extends RecyclerView.ViewHolder {

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.evaluacion_parcial.Adaptadores.adt_paises;
 import com.example.evaluacion_parcial.Interfaces.itf_paises;
 import com.example.evaluacion_parcial.Modelos.Pais;
 import com.mindorks.placeholderview.InfinitePlaceHolderView;
@@ -22,11 +23,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    RecyclerView rclListado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final InfinitePlaceHolderView infinitePlaceHolderView = findViewById(R.id.infinitePlaceHolder);
+
+        rclListado = (RecyclerView)findViewById(R.id.rclListado);
         // Implementación de retrofit para obtener los datos de los países
         Retrofit rf = new Retrofit.Builder()
                 .baseUrl("https://restcountries.eu/")
@@ -43,14 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 //Definiendo donde se guardaran los valores obtenidos
                 String valores = "";
                 //Creando array con datos de cada país
-                Restaurante[] restaurant_arr = restaurantes.getRestaurantes();
-                //Creación y configuración del recyclerview
-                rclVista = (RecyclerView) findViewById(R.id.rclVista);
+                List<Pais> paises_arr = response.body();
+                //Configuración del recyclerview
                 LinearLayoutManager linear = new LinearLayoutManager(getApplicationContext());
                 linear.setOrientation(LinearLayoutManager.VERTICAL);
-                rclVista.setLayoutManager(linear);
-                adt_datos adaptador = new adt_datos(restaurant_arr);
-                rclVista.setAdapter(adaptador);
+                rclListado.setLayoutManager(linear);
+                adt_paises adaptador = new adt_paises(paises_arr);
+                rclListado.setAdapter(adaptador);
             }
 
             @Override
