@@ -66,7 +66,9 @@ public class Detalles extends AppCompatActivity {
         ArrayList<String> valores =b.getStringArrayList("valores");
         //View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        lblPais_frag.setText("hola");}
+        HomeFragment.lblPais_frag.setText(valores.get(0));
+
+        }
         catch (Exception e){
             Toast.makeText(getApplicationContext(), e.toString(),Toast.LENGTH_LONG).show();
 

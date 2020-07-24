@@ -21,21 +21,19 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    public static TextView lblPais_frag;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        try{
-            //Obteniendo los datos
-            View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        }
-        catch (Exception e){
-
-
-        }
         return root;
+    }
+    public void HomeFragment()
+    {
+        lblPais_frag = (TextView) getView().findViewById(R.id.lblPais_frag);
+
+
     }
 }
