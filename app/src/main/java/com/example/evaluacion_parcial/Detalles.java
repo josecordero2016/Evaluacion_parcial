@@ -5,8 +5,10 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.evaluacion_parcial.Modelos.Pais;
+import com.example.evaluacion_parcial.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -18,6 +20,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.ArrayList;
 
 public class Detalles extends AppCompatActivity {
 
@@ -49,13 +53,24 @@ public class Detalles extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        Bundle b = this.getIntent().getExtras();
-        Pais pais =b.getParcelable("Valores");
-        //Obteniendo los datos
+
+
         lblPais_frag = (TextView)findViewById(R.id.lblPais_frag);
         lblCapital = (TextView)findViewById(R.id.lblCapital);
         lblNacionalidad = (TextView)findViewById(R.id.lblNacionalidad);
         lblRegion = (TextView)findViewById(R.id.lblRegion);
+
+        try{
+        //Obteniendo los datos
+        Bundle b = this.getIntent().getExtras();
+        ArrayList<String> valores =b.getStringArrayList("valores");
+        //View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        lblPais_frag.setText("hola");}
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(), e.toString(),Toast.LENGTH_LONG).show();
+
+        }
     }
 
     @Override

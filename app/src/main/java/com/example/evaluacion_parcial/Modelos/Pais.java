@@ -88,7 +88,7 @@ public class Pais {
         this.languages = languages;
     }
 
-    class Lenguajes
+    public class Lenguajes
      {
         private String name,iso639_1;
 
