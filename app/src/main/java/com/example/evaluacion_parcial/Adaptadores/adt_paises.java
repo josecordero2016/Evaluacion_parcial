@@ -41,6 +41,7 @@ public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
         TextView lblPais;
         ImageView imgFoto;
 
+
         public ViewHolder_dts(@NonNull View itemView)
         {
             super(itemView);
@@ -51,9 +52,11 @@ public class adt_paises extends RecyclerView.Adapter<adt_paises.ViewHolder_dts>
         public void asignando(Pais p)
         {
             lblPais.setText(p.getName());
-            Glide.with(itemView).load(p.getFlag())
+            String url = "http://www.geognos.com/api/en/countries/flag/"+p.getAlpha2Code()+".png";
+            Glide.with(itemView).load(url)
                     .centerCrop()
                     .into(imgFoto);
+
         }
     }
 }
